@@ -99,17 +99,27 @@
     </div>
     <div class="dplayer-icons dplayer-icons-right">
         {{ if options.video.quality }}
-        <div class="dplayer-quality">
-            <button class="dplayer-icon dplayer-quality-icon">{{ options.video.quality[options.video.defaultQuality].name }}</button>
-            <div class="dplayer-quality-mask">
-                <div class="dplayer-quality-list">
+        <div class="dplayer-menu">
+            <button class="dplayer-icon dplayer-menu-icon dplayer-quality-icon">{{ options.video.quality[options.video.defaultQuality].name }}</button>
+            <div class="dplayer-menu-mask">
+                <div class="dplayer-menu-list dplayer-quality-list">
                 {{ each options.video.quality }}
-                    <div class="dplayer-quality-item" data-index="{{ $index }}">{{ $value.name }}</div>
+                    <div class="dplayer-menu-item dplayer-quality-item" data-index="{{ $index }}">{{ $value.name }}</div>
                 {{ /each }}
                 </div>
             </div>
         </div>
         {{ /if }}
+        <div class="dplayer-menu">
+            <button class="dplayer-icon dplayer-menu-icon dplayer-speed-icon">倍速</button>
+            <div class="dplayer-menu-mask">
+                <div class="dplayer-menu-list dplayer-speed-list">
+                {{ each speeds }}
+                    <div class="dplayer-menu-item dplayer-speed-item" data-speed="{{$value}}">{{ $value }}X</div>
+                {{ /each }}
+                </div>
+            </div>
+        </div>
         {{ if options.screenshot }}
         <div class="dplayer-icon dplayer-camera-icon" data-balloon="{{ tran('Screenshot') }}" data-balloon-pos="up">
             <span class="dplayer-icon-content">{{@ icons.camera }}</span>

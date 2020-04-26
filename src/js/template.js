@@ -18,6 +18,7 @@ class Template {
             tran: this.tran,
             icons: Icons,
             mobile: utils.isMobile,
+            speeds: ['0.5', '1.0', '1.5', '2'],
             video: {
                 current: true,
                 pic: this.options.video.pic,
@@ -74,11 +75,13 @@ class Template {
         this.commentColorSettingBox = this.container.querySelector('.dplayer-comment-setting-color');
         this.browserFullButton = this.container.querySelector('.dplayer-full-icon');
         this.qualityList = this.container.querySelector('.dplayer-quality-list');
+        this.speedList = this.container.querySelector('.dplayer-speed-list');
         this.camareButton = this.container.querySelector('.dplayer-camera-icon');
         this.subtitleButton = this.container.querySelector('.dplayer-subtitle-icon');
         this.subtitleButtonInner = this.container.querySelector('.dplayer-subtitle-icon .dplayer-icon-content');
         this.subtitle = this.container.querySelector('.dplayer-subtitle');
         this.qualityButton = this.container.querySelector('.dplayer-quality-icon');
+        this.speedButton = this.container.querySelector('.dplayer-speed-icon');
         this.barPreview = this.container.querySelector('.dplayer-bar-preview');
         this.barWrap = this.container.querySelector('.dplayer-bar-wrap');
         this.notice = this.container.querySelector('.dplayer-notice');

@@ -392,10 +392,7 @@ class DPlayer {
                 // https://github.com/Dash-Industry-Forum/dash.js
                 case 'dash':
                     if (window.dashjs) {
-                        const dashjsPlayer = window.dashjs
-                            .MediaPlayer()
-                            .create()
-                            .initialize(video, video.src, false);
+                        const dashjsPlayer = window.dashjs.MediaPlayer().create().initialize(video, video.src, false);
                         const options = this.options.pluginOptions.dash;
                         dashjsPlayer.updateSettings(options);
                         this.plugins.dash = dashjsPlayer;
@@ -598,6 +595,7 @@ class DPlayer {
 
     speed(rate) {
         this.video.playbackRate = rate;
+        this.template.speedButton.innerHTML = rate === '1.0' ? '倍速' : `${rate}X`;
     }
 
     destroy() {

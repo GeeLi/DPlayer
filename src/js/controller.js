@@ -27,6 +27,7 @@ class Controller {
         this.initPlayedBar();
         this.initFullButton();
         this.initQualityButton();
+        this.initSpeedButton();
         this.initScreenshotButton();
         this.initSubtitleButton();
         this.initHighlights();
@@ -64,9 +65,11 @@ class Controller {
         });
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragEnd, (e) => {
             this.endX = e.clientX || e.changedTouches[0].clientX;
-            if (this.endX - this.startX > 20) { // 快进
+            if (this.endX - this.startX > 20) {
+                // 快进
                 this.player.seek(this.player.video.currentTime + 10);
-            } else if (this.startX - this.endX > 20) { // 后退
+            } else if (this.startX - this.endX > 20) {
+                // 后退
                 this.player.seek(this.player.video.currentTime - 10);
             } else if (!utils.isMobile) {
                 this.player.toggle();
@@ -183,7 +186,6 @@ class Controller {
         this.player.template.browserFullButton.addEventListener('click', () => {
             this.player.fullScreen.toggle('browser');
         });
-
     }
 
     initVolumeButton() {
@@ -231,6 +233,14 @@ class Controller {
                 }
             });
         }
+    }
+
+    initSpeedButton() {
+        this.player.template.speedList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dplayer-speed-item')) {
+                this.player.speed(e.target.dataset.speed);
+            }
+        });
     }
 
     initScreenshotButton() {
