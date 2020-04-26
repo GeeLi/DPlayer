@@ -11,7 +11,7 @@
     svg {
         width: 100%;
         height: 100%;
-        
+
         path,
         circle {
             fill: #fff;
@@ -166,8 +166,7 @@
     &.dplayer-mobile {
         .dplayer-controller .dplayer-icons {
             .dplayer-volume,
-            .dplayer-camera-icon,
-            .dplayer-play-icon {
+            .dplayer-camera-icon {
                 display: none;
             }
             .dplayer-full .dplayer-full-in-icon {

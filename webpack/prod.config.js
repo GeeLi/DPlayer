@@ -1,7 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
-const gitRevisionPlugin = new GitRevisionPlugin();
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -13,7 +10,7 @@ module.exports = {
     devtool: 'source-map',
 
     entry: {
-        DPlayer: './src/js/index.js',
+        DPlayer: ['./src/js/index.js']
     },
 
     output: {
@@ -85,10 +82,6 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.DefinePlugin({
-            DPLAYER_VERSION: `"${require('../package.json').version}"`,
-            GIT_HASH: JSON.stringify(gitRevisionPlugin.version()),
-        }),
     ],
 
     node: {

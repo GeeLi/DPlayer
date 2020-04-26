@@ -45,9 +45,9 @@ class Controller {
         });
 
         if (!utils.isMobile) {
-            this.player.template.videoWrap.addEventListener('click', () => {
-                this.player.toggle();
-            });
+            // this.player.template.videoWrap.addEventListener('click', () => {
+            //     this.player.toggle();
+            // });
             this.player.template.controllerMask.addEventListener('click', () => {
                 this.player.toggle();
             });
@@ -59,6 +59,19 @@ class Controller {
                 this.toggle();
             });
         }
+        this.player.template.videoWrap.addEventListener(utils.nameMap.dragStart, (e) => {
+            this.startX = e.clientX || e.changedTouches[0].clientX;
+        });
+        this.player.template.videoWrap.addEventListener(utils.nameMap.dragEnd, (e) => {
+            this.endX = e.clientX || e.changedTouches[0].clientX;
+            if (this.endX - this.startX > 20) { // 快进
+                this.player.seek(this.player.video.currentTime + 10);
+            } else if (this.startX - this.endX > 20) { // 后退
+                this.player.seek(this.player.video.currentTime - 10);
+            } else if (!utils.isMobile) {
+                this.player.toggle();
+            }
+        });
     }
 
     initHighlights() {
@@ -171,9 +184,6 @@ class Controller {
             this.player.fullScreen.toggle('browser');
         });
 
-        this.player.template.webFullButton.addEventListener('click', () => {
-            this.player.fullScreen.toggle('web');
-        });
     }
 
     initVolumeButton() {

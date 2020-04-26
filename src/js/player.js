@@ -17,7 +17,6 @@ import Controller from './controller';
 import Setting from './setting';
 import Comment from './comment';
 import HotKey from './hotkey';
-import ContextMenu from './contextmenu';
 import InfoPanel from './info-panel';
 import tplVideo from '../template/video.art';
 
@@ -136,8 +135,6 @@ class DPlayer {
 
         this.hotkey = new HotKey(this);
 
-        this.contextmenu = new ContextMenu(this);
-
         this.initVideo(this.video, (this.quality && this.quality.type) || this.options.video.type);
 
         this.infoPanel = new InfoPanel(this);
@@ -184,7 +181,7 @@ class DPlayer {
         }
 
         this.template.playButton.innerHTML = Icons.pause;
-        this.template.mobilePlayButton.innerHTML = Icons.pause;
+        this.template.mobilePlayButton.innerHTML = ''; // Icons.pause;
 
         if (!fromNative) {
             const playedPromise = Promise.resolve(this.video.play());
@@ -614,8 +611,7 @@ class DPlayer {
     }
 
     static get version() {
-        /* global DPLAYER_VERSION */
-        return DPLAYER_VERSION;
+        return '';
     }
 }
 
