@@ -544,20 +544,31 @@ class DPlayer {
         this.prevVideo = this.video;
         this.video = videoEle;
         this.initVideo(this.video, this.quality.type || this.options.video.type);
-        this.seek(this.prevVideo.currentTime);
+        if (!utils.isMobile) {
+            this.seek(this.prevVideo.currentTime);
+        }
         this.notice(`${this.tran('Switching to')} ${this.quality.name} ${this.tran('quality')}`, -1);
         this.events.trigger('quality_start', this.quality);
 
-        this.on('canplay', () => {
+        this.on(utils.isMobile ? 'loadedmetadata' : 'canplay', () => {
             if (this.prevVideo) {
-                if (this.video.currentTime !== this.prevVideo.currentTime) {
-                    this.seek(this.prevVideo.currentTime);
-                    return;
-                }
+                // if (this.video.currentTime !== this.prevVideo.currentTime || utils.isMobile) {
+                //     this.seek(this.prevVideo.currentTime);
+                //     // return;
+                // }
+                const time = this.prevVideo.currentTime;
                 this.template.videoWrap.removeChild(this.prevVideo);
                 this.video.classList.add('dplayer-video-current');
                 if (!paused) {
+                    this.video.currentTime = time;
                     this.video.play();
+                    setTimeout(() => {
+                        if (Math.abs(this.video.currentTime - time) > 1) {
+                            setTimeout(() => {
+                                this.video.currentTime = time;
+                            }, 200);
+                        }
+                    }, 0);
                 }
                 this.prevVideo = null;
                 this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
