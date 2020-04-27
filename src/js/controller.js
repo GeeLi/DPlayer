@@ -86,13 +86,15 @@ class Controller {
                         this.player.template.playedBarWrap.removeChild(item);
                     });
                     for (let i = 0; i < this.player.options.highlight.length; i++) {
-                        if (!this.player.options.highlight[i].text || !this.player.options.highlight[i].time) {
+                        if (!this.player.options.highlight[i].time) {
                             continue;
                         }
                         const p = document.createElement('div');
                         p.classList.add('dplayer-highlight');
                         p.style.left = (this.player.options.highlight[i].time / this.player.video.duration) * 100 + '%';
-                        p.innerHTML = '<span class="dplayer-highlight-text">' + this.player.options.highlight[i].text + '</span>';
+                        if (this.player.options.highlight[i].text) {
+                            p.innerHTML = '<span class="dplayer-highlight-text">' + this.player.options.highlight[i].text + '</span>';
+                        }
                         this.player.template.playedBarWrap.insertBefore(p, this.player.template.playedBarTime);
                     }
                 }
