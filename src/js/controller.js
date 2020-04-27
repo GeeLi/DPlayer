@@ -91,10 +91,11 @@ class Controller {
                         }
                         const p = document.createElement('div');
                         p.classList.add('dplayer-highlight');
-                        p.style.left = (this.player.options.highlight[i].time / this.player.video.duration) * 100 + '%';
-                        if (this.player.options.highlight[i].text) {
-                            p.innerHTML = '<span class="dplayer-highlight-text">' + this.player.options.highlight[i].text + '</span>';
+                        if (!this.player.options.highlight[i].text || utils.isMobile) {
+                            p.classList.add('no-text');
                         }
+                        p.style.left = (this.player.options.highlight[i].time / this.player.video.duration) * 100 + '%';
+                        p.innerHTML = '<span class="dplayer-highlight-text">' + this.player.options.highlight[i].text + '</span>';
                         this.player.template.playedBarWrap.insertBefore(p, this.player.template.playedBarTime);
                     }
                 }

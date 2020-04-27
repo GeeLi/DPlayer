@@ -61,9 +61,17 @@
                 &~.dplayer-bar-preview {
                     opacity: 0;
                 }
-                // &~.dplayer-bar-time {
-                //     opacity: 0;
-                // }
+                &~.dplayer-bar-time {
+                    opacity: 0;
+                }
+            }
+            &.no-text:hover {
+                .dplayer-highlight-text {
+                    display: none;
+                }
+                &~.dplayer-bar-time {
+                    opacity: 1;
+                }
             }
             .dplayer-highlight-text {
                 display: none;
