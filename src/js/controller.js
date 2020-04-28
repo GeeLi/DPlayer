@@ -33,6 +33,8 @@ class Controller {
         this.initHighlights();
         if (!utils.isMobile) {
             this.initVolumeButton();
+        } else {
+            this.initMenuControl();
         }
     }
 
@@ -291,6 +293,36 @@ class Controller {
         }
     }
 
+    initMenuControl() {
+        // 打开/关闭菜单
+        const menus = document.getElementsByClassName('dplayer-menu');
+        for (let i = 0; i < menus.length; i++) {
+            const menu = menus[i];
+            menu.addEventListener('click', () => {
+                const showMenu = document.querySelector('.dplayer-menu.show');
+                if (showMenu) {
+                    showMenu.classList.remove('show');
+                }
+                if (!showMenu || showMenu !== menu) {
+                    menu.classList.add('show');
+                }
+            });
+        }
+        // 选择后关闭菜单
+        const items = document.getElementsByClassName('dplayer-menu-item');
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            item.addEventListener('click', () => {
+                const menu = document.querySelector('.dplayer-menu.show');
+                if (menu) {
+                    setTimeout(() => {
+                        menu.classList.remove('show');
+                    }, 0);
+                }
+            });
+        }
+    }
+
     setAutoHide() {
         this.show();
         clearTimeout(this.autoHideTimer);
@@ -309,6 +341,10 @@ class Controller {
         this.player.container.classList.add('dplayer-hide-controller');
         this.player.setting.hide();
         this.player.comment && this.player.comment.hide();
+        const showMenu = document.querySelector('.dplayer-menu.show');
+        if (showMenu) {
+            showMenu.classList.remove('show');
+        }
     }
 
     isShow() {

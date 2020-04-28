@@ -551,7 +551,7 @@
             display: inline-block;
             height: 100%;
             z-index: 2;
-            &:hover {
+            &.show {
                 .dplayer-menu-list {
                     display: block;
                 }
@@ -659,6 +659,19 @@
             }
             input:checked+label:after {
                 left: 12px;
+            }
+        }
+    }
+}
+
+.dplayer:not(.dplayer-mobile) {
+    .dplayer-controller .dplayer-icons-right {
+        .dplayer-menu:hover {
+            .dplayer-menu-list {
+                display: block;
+            }
+            .dplayer-menu-mask {
+                display: block;
             }
         }
     }
