@@ -533,7 +533,7 @@ class DPlayer {
         this.video.pause();
         const videoHTML = tplVideo({
             current: false,
-            pic: null,
+            pic: this.options.video.pic,
             screenshot: this.options.screenshot,
             preload: 'auto',
             url: this.quality.url,
