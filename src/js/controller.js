@@ -62,21 +62,19 @@ class Controller {
                 this.toggle();
             });
         }
-        let lastY = 0;
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragStart, (e) => {
             this.startX = e.clientX || e.changedTouches[0].clientX;
-            lastY = e.clientY || e.changedTouches[0].clientY;
+            this.startY = e.clientY || e.changedTouches[0].clientY;
         });
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragMove, (e) => {
-            const currentY = e.clientY || e.changedTouches[0].clientY;
-            if (currentY === lastY) {
-                e.preventDefault();
-            } else {
-                lastY = currentY;
-            }
+            e.preventDefault();
         });
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragEnd, (e) => {
             this.endX = e.clientX || e.changedTouches[0].clientX;
+            this.endY = e.clientY || e.changedTouches[0].clientY;
+            if (this.endY - this.startY > 30 || this.startY - this.endY > 30) {
+                return;
+            }
             if (this.endX - this.startX > 20) {
                 // 快进
                 this.player.seek(this.player.video.currentTime + 10);
@@ -85,6 +83,28 @@ class Controller {
                 this.player.seek(this.player.video.currentTime - 10);
             } else if (!utils.isMobile) {
                 this.player.toggle();
+            }
+        });
+
+        this.player.template.mobilePlayButton.addEventListener(utils.nameMap.dragStart, (e) => {
+            this.startX = e.clientX || e.changedTouches[0].clientX;
+            this.startY = e.clientY || e.changedTouches[0].clientY;
+        });
+        this.player.template.mobilePlayButton.addEventListener(utils.nameMap.dragMove, (e) => {
+            e.preventDefault();
+        });
+        this.player.template.mobilePlayButton.addEventListener(utils.nameMap.dragEnd, (e) => {
+            this.endX = e.clientX || e.changedTouches[0].clientX;
+            this.endY = e.clientY || e.changedTouches[0].clientY;
+            if (this.endY - this.startY > 30 || this.startY - this.endY > 30) {
+                return;
+            }
+            if (this.endX - this.startX > 20) {
+                // 快进
+                this.player.seek(this.player.video.currentTime + 10);
+            } else if (this.startX - this.endX > 20) {
+                // 后退
+                this.player.seek(this.player.video.currentTime - 10);
             }
         });
     }
