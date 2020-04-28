@@ -62,8 +62,18 @@ class Controller {
                 this.toggle();
             });
         }
+        let lastY = 0;
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragStart, (e) => {
             this.startX = e.clientX || e.changedTouches[0].clientX;
+            lastY = e.clientY || e.changedTouches[0].clientY;
+        });
+        this.player.template.videoWrap.addEventListener(utils.nameMap.dragMove, (e) => {
+            const currentY = e.clientY || e.changedTouches[0].clientY;
+            if (currentY === lastY) {
+                e.preventDefault();
+            } else {
+                lastY = currentY;
+            }
         });
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragEnd, (e) => {
             this.endX = e.clientX || e.changedTouches[0].clientX;
@@ -122,6 +132,7 @@ class Controller {
 
     initPlayedBar() {
         const thumbMove = (e) => {
+            e.preventDefault();
             let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.playedBarWrap)) / this.player.template.playedBarWrap.clientWidth;
             percentage = Math.max(percentage, 0);
             percentage = Math.min(percentage, 1);
@@ -147,6 +158,7 @@ class Controller {
         });
 
         this.player.template.playedBarWrap.addEventListener(utils.nameMap.dragMove, (e) => {
+            e.preventDefault();
             if (this.player.video.duration) {
                 const px = this.player.template.playedBarWrap.getBoundingClientRect().left;
                 const tx = (e.clientX || e.changedTouches[0].clientX) - px;
