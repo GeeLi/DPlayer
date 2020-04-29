@@ -69,6 +69,9 @@ class Controller {
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragMove, (e) => {
             e.preventDefault();
         });
+        this.player.template.notice.addEventListener(utils.nameMap.dragMove, (e) => {
+            e.preventDefault();
+        });
         this.player.template.videoWrap.addEventListener(utils.nameMap.dragEnd, (e) => {
             this.endX = e.clientX || e.changedTouches[0].clientX;
             this.endY = e.clientY || e.changedTouches[0].clientY;
