@@ -257,3 +257,7 @@
 <button class="dplayer-mobile-play">
     {{@ icons.play }}
 </button>
+<button class="dplayer-mobile-back">
+    {{@ icons.back }}
+    <span>返回</span>
+</button>

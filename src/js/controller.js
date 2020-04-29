@@ -223,6 +223,9 @@ class Controller {
     }
 
     initFullButton() {
+        this.player.template.mobileBackButton.addEventListener('click', () => {
+            this.player.fullScreen.toggle('browser');
+        });
         this.player.template.browserFullButton.addEventListener('click', () => {
             this.player.fullScreen.toggle('browser');
         });

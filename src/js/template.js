@@ -45,6 +45,7 @@ class Template {
         this.bezel = this.container.querySelector('.dplayer-bezel-icon');
         this.playButton = this.container.querySelector('.dplayer-play-icon');
         this.mobilePlayButton = this.container.querySelector('.dplayer-mobile-play');
+        this.mobileBackButton = this.container.querySelector('.dplayer-mobile-back');
         this.videoWrap = this.container.querySelector('.dplayer-video-wrap');
         this.controllerMask = this.container.querySelector('.dplayer-controller-mask');
         this.ptime = this.container.querySelector('.dplayer-ptime');

@@ -694,3 +694,30 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.dplayer-mobile-back {
+    display: none;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    padding-left: 10px;
+    opacity: 0.8;
+    color: #ffffff;
+    font-size: 14px;
+    svg {
+        width: 17px;
+        padding-right: 3px;
+    }
+}
+
+.dplayer.dplayer-mobile {
+    .dplayer-mobile-back.show {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -14,6 +14,7 @@ import pallette from '../assets/pallette.svg';
 import camera from '../assets/camera.svg';
 import subtitle from '../assets/subtitle.svg';
 import loading from '../assets/loading.svg';
+import back from '../assets/back.svg';
 
 const Icons = {
     play: play,
@@ -32,6 +33,7 @@ const Icons = {
     camera: camera,
     subtitle: subtitle,
     loading: loading,
+    back: back,
 };
 
 export default Icons;

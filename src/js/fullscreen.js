@@ -16,9 +16,11 @@ class FullScreen {
             this.player.resize();
             if (this.isFullScreen('browser')) {
                 this.player.events.trigger('fullscreen');
+                this.player.template.mobileBackButton.classList.add('show');
             } else {
                 utils.setScrollPosition(this.lastScrollPosition);
                 this.player.events.trigger('fullscreen_cancel');
+                this.player.template.mobileBackButton.classList.remove('show');
             }
         };
         const docfullscreenchange = () => {
