@@ -4,6 +4,14 @@ class FullScreen {
     constructor(player) {
         this.player = player;
         this.lastScrollPosition = { left: 0, top: 0 };
+
+        // 无奈之举，暂时找不到iOS端切换清晰度后退出全屏会报错的问题
+        const u = window.navigator.userAgent;
+        const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isIOS) {
+            return;
+        }
+
         this.player.events.on('webfullscreen', () => {
             this.player.resize();
         });
